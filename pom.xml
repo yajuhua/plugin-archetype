@@ -4,7 +4,7 @@
 
   <groupId>io.github.yajuhua</groupId>
   <artifactId>plugin-archetype</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.2</version>
   <packaging>maven-archetype</packaging>
 
   <build>
