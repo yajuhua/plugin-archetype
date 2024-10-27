@@ -1,28 +1,48 @@
 package ${package}.${artifactId}.main;
 
+import io.github.yajuhua.download.commons.Operation;
+import io.github.yajuhua.download.commons.Type;
+import io.github.yajuhua.download.manager.DownloadManager;
 import io.github.yajuhua.download.manager.Request;
 import io.github.yajuhua.podcast2API.Channel;
 import io.github.yajuhua.podcast2API.Item;
+import io.github.yajuhua.podcast2API.Params;
 import io.github.yajuhua.podcast2API.Podcast2;
 import io.github.yajuhua.podcast2API.extension.build.ExtendList;
 import io.github.yajuhua.podcast2API.setting.Setting;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.InputStream;
 import java.util.*;
 
+@Slf4j
 public class Main implements Podcast2 {
-    @Override
-    public List<Item> items() throws Exception {
-        return Collections.emptyList();
+
+    private Params params;
+
+    public Main() {
     }
 
-    public Item latestItem() throws Exception{
-        return items().get(0);
+    public Main(Params params) {
+        this.params = params;
     }
 
+    /**
+     * 获取频道信息
+     * @return Channel
+     * @throws Exception
+     */
     @Override
     public Channel channel() throws Exception {
-        return null;
+        return Channel.builder()
+                .title("频道名称")
+                .status(1)
+                .image("频道封面")
+                .link("频道链接")
+                .description("频道描述")
+                .author("频道作者")
+                .category("分类")
+                .build();
     }
 
     @Override
@@ -33,6 +53,17 @@ public class Main implements Podcast2 {
     @Override
     public Item getItem(String link) throws Exception {
         return null;
+    }
+
+    @Override
+    public List<Item> items() throws Exception {
+        return Collections.emptyList();
+    }
+
+    @Override
+    public Item latestItem() throws Exception{
+        params.setEpisodes(Arrays.asList(0));
+        return items().get(0);
     }
 
     @Override
@@ -53,10 +84,12 @@ public class Main implements Podcast2 {
         return map;
     }
 
+    @Override
     public List<Setting> settings() throws Exception{
         return Collections.emptyList();
     }
 
+    @Override
     public ExtendList getExtensions() throws Exception{
         return new ExtendList(Collections.emptyList(),Collections.emptyList());
     }
