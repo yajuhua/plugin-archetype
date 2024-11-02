@@ -11,5 +11,5 @@ mvn clean install
 ```
 ### 生成插件模板
 ```bash
-mvn archetype:generate -DarchetypeGroupId=io.github.yajuhua -DarchetypeArtifactId=plugin-archetype -DarchetypeVersion=0.0.2 -DgroupId=io.github.yajuhua -DartifactId=metube
+mvn archetype:generate -DarchetypeGroupId=io.github.yajuhua -DarchetypeArtifactId=plugin-archetype -DarchetypeVersion=0.0.3 -DgroupId=io.github.yajuhua -DartifactId=metube
 ```
