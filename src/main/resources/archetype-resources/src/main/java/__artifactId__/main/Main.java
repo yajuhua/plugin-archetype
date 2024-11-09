@@ -1,5 +1,6 @@
 package ${package}.${artifactId}.main;
 
+import com.google.gson.Gson;
 import io.github.yajuhua.download.commons.Operation;
 import io.github.yajuhua.download.commons.Type;
 import io.github.yajuhua.download.manager.DownloadManager;
@@ -19,8 +20,13 @@ import java.util.*;
 public class Main implements Podcast2 {
 
     private Params params;
+    private Gson gson = new Gson();
 
     public Main() {
+    }
+
+    public Main(String paramsStr) {
+        this.params = gson.fromJson(paramsStr, Params.class);
     }
 
     public Main(Params params) {
@@ -69,7 +75,7 @@ public class Main implements Podcast2 {
     @Override
     public Map getInfo() throws Exception{
         //读取插件属性文件plugin.properties
-        InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("plugin.properties");
+        InputStream is = this.getClass().getClassLoader().getResourceAsStream("plugin.properties");
         Properties properties = new Properties();
         properties.load(is);
 
